@@ -2,59 +2,136 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>User Registration</title>
+    <link rel="stylesheet" href="css/auth-style.css">
     <style>
+        /* Background & Layout */
         body {
-            background: linear-gradient(to right, #00b09b, #96c93d);
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            color: white;
-            margin: 0;
+            animation: fadeIn 1.2s ease-in-out;
         }
 
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        p {
-            font-size: 20px;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 30px;
-        }
-
-        .btn {
-            background-color: white;
-            color: #00b09b;
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
+        /* Form Styling */
+        form {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(8px);
             transition: all 0.3s ease-in-out;
         }
 
-        .btn:hover {
-            background-color: #f0f0f0;
+        form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: 0.3s border ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #f6a70b;
+            outline: none;
+        }
+
+        button {
+            background: #f6a70b;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #e89600;
+        }
+
+        .error {
+            color: #b00020;
+            font-weight: bold;
+            text-align: center;
+            margin-top: -10px;
+        }
+
+        .link-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .link-container a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .link-container a:hover {
+            color: #000;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Student Management System</h1>
-    <p>Please choose an option below:</p>
-    <div class="buttons">
- 
-		<a href="/register"><button class="btn">Register</button></a>
 
-        <a href="/login"><button class="btn">Login</button></a>
-    </div>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <h2>User Registration</h2>
+
+        <label>Username:</label>
+        <input type="text" th:field="*{username}" required />
+
+        <label>Password:</label>
+        <input type="password" th:field="*{password}" required />
+
+        <label>Category:</label>
+        <select th:field="*{category}" required>
+            <option value="">--Select--</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Student">Student</option>
+        </select>
+
+        <button type="submit">Register</button>
+
+        <p th:if="${error}" th:text="${error}" class="error"></p>
+
+        <div class="link-container">
+            <a href="/">Back to Home</a>
+        </div>
+    </form>
+
 </body>
 </html>
