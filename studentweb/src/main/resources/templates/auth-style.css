@@ -1,0 +1,54 @@
+.auth-container {
+  background-image: url("../images/landing-bg.jpg"); /* Replace with your actual image path */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.auth-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.auth-box input[type="text"],
+.auth-box input[type="password"],
+.auth-box button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.auth-box button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-box button:hover {
+  background-color: #0056b3;
+}
+
+.auth-box a {
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #007BFF;
+}
